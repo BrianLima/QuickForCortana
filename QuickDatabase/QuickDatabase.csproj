@@ -113,7 +113,6 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DbNotes.cs" />
     <Compile Include="NotesDataSource.cs" />
