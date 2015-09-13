@@ -8,10 +8,16 @@ namespace QuickStorage
 {
     public class Note
     {
+        public Note(string note, DateTime date, int id)
+        {
+            this._note = note;
+            this._date = date;
+            this._id = id;
+        }
 
         private int _id;
 
-        public int Id
+        public int id
         {
             get { return _id; }
             set { _id = value; }
@@ -21,8 +27,8 @@ namespace QuickStorage
 
         public string note
         {
-            get { return note; }
-            set { note = value; }
+            get { return _note; }
+            set { _note = value; }
         }
 
         private DateTime _date;
@@ -32,7 +38,5 @@ namespace QuickStorage
             get { return _date; }
             set { _date = value; }
         }
-
-
     }
 }
