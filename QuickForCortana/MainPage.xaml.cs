@@ -24,11 +24,13 @@ namespace QuickForCortana
     public sealed partial class MainPage : Page
     {
         List<Note> notes = new List<Note>();
+        IEnumerable<Note> test = new List<Note>();
         public MainPage()
         {
             this.InitializeComponent();
             this.notes.Add(new Note("testing", DateTime.Now, 0));
-            this.listView.DataContext = notes;
+            test = notes.AsEnumerable<Note>();
+            this.listView.DataContext = test;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)

@@ -38,16 +38,15 @@
             </StackPanel>
         </SplitView.Pane>
         <StackPanel>
-            <ListBox x:Name="listView" HorizontalAlignment="Left" Height="auto" VerticalAlignment="Top" Width="auto">
+            <ListBox x:Name="listView" HorizontalAlignment="Left" VerticalAlignment="Top" Width="auto" DataContext="{Binding notes}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Grid >
+                        <Grid>
                             <Models:NoteControl/>
                         </Grid>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-            
         </StackPanel>
     </SplitView>
 
