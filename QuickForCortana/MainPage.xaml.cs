@@ -1,5 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using QuickStorage;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -15,7 +15,6 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-using QuickStorage;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
@@ -26,8 +25,6 @@ namespace QuickForCortana
     /// </summary>
     public sealed partial class MainPage : Page
     {
-        List<Note> notes = new List<Note>();
-        IEnumerable<Note> test = new List<Note>();
         public MainPage()
         {
             DataContext = new MainViewModel();
@@ -41,9 +38,6 @@ namespace QuickForCortana
             };
 
             this.InitializeComponent();
-            this.notes.Add(new Note("testing", DateTime.Now, 0));
-            test = notes.AsEnumerable<Note>();
-            this.listView.DataContext = test;
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -52,48 +46,5 @@ namespace QuickForCortana
         }
     }
 
-    public class MainViewModel : INotifyPropertyChanged
-    {
-        private ObservableCollection<Note> _notes;
 
-        public ObservableCollection<Note> Notes
-        {
-            get { return _notes; }
-            set { _notes = value; OnPropertyChanged(); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
-    public class Note : INotifyPropertyChanged
-    {
-        private string _content;
-        private DateTime _date;
-
-        public string Content
-        {
-            get { return _content; }
-            set { _content = value; OnPropertyChanged(); }
-        }
-
-        public DateTime Date
-        {
-            get { return _date; }
-            set { _date = value; OnPropertyChanged(); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
 }

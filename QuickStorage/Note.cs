@@ -1,42 +1,56 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace QuickStorage
 {
-    public class Note
+    public class Note : INotifyPropertyChanged
     {
-        public Note(string note, DateTime date, int id)
-        {
-            this._note = note;
-            this._date = date;
-            this._id = id;
-        }
-
-        private int _id;
-
-        public int id
-        {
-            get { return _id; }
-            set { _id = value; }
-        }
-
-        private string _note;
-
-        public string note
-        {
-            get { return _note; }
-            set { _note = value; }
-        }
-
+        private string _content;
         private DateTime _date;
 
-        public DateTime date
+        public string Content
+        {
+            get { return _content; }
+            set { _content = value; OnPropertyChanged(); }
+        }
+
+        public DateTime Date
         {
             get { return _date; }
-            set { _date = value; }
+            set { _date = value; OnPropertyChanged(); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+
+    public class MainViewModel : INotifyPropertyChanged
+    {
+        private ObservableCollection<Note> _notes;
+
+        public ObservableCollection<Note> Notes
+        {
+            get { return _notes; }
+            set { _notes = value; OnPropertyChanged(); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
