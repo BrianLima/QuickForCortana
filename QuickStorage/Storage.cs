@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.Serialization.Json;
@@ -9,7 +10,7 @@ using Windows.Storage;
 
 namespace QuickStorage
 {
-    class Storage
+    public class Storage
     {
         private const string storage = "data.json";
 
@@ -17,14 +18,13 @@ namespace QuickStorage
         /// Deserializes the application json storage
         /// </summary>
         /// <returns>A list of notes</returns>
-        private async Task<List<Note>> deserializeJsonAsync()
+        public async Task<ObservableCollection<Note>> deserializeJsonAsync(ObservableCollection<Note> Notes)
         {
-            List<Note> Notes;
-            var jsonSerializer = new DataContractJsonSerializer(typeof(List<Note>));
+            var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Note>));
 
             var myStream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(storage);
 
-            Notes = (List<Note>)jsonSerializer.ReadObject(myStream);
+            Notes = (ObservableCollection<Note>)jsonSerializer.ReadObject(myStream);
 
             return Notes;
         }
@@ -33,15 +33,12 @@ namespace QuickStorage
         /// Stores a list of notes to the application storage
         /// </summary>
         /// <param name="notes"></param>
-        /// <returns></returns>
-        private async Task writeJsonAsync(List<Note> notes)
+        public async Task writeJsonAsync(ObservableCollection<Note> Notes)
         {
             var serializer = new DataContractJsonSerializer(typeof(List<Note>));
-            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(
-                          storage,
-                          CreationCollisionOption.ReplaceExisting))
+            using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(storage, CreationCollisionOption.ReplaceExisting))
             {
-                serializer.WriteObject(stream, notes);
+                serializer.WriteObject(stream, Notes);
             }
         }
     }

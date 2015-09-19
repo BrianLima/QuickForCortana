@@ -32,9 +32,9 @@ namespace QuickForCortana
             // adicionando alguns dados falsos para teste
             ((MainViewModel)DataContext).Notes = new ObservableCollection<Note>
             {
-                new Note { Content = "Nota 1", Date = DateTime.Today },
-                new Note { Content = "Nota 2", Date = DateTime.Today },
-                new Note { Content = "Nota 3", Date = DateTime.Today }
+                new Note { Content = "Nota 4", Date = DateTime.Today },
+                new Note { Content = "Nota 27", Date = DateTime.Today },
+                new Note { Content = "Nota 31", Date = DateTime.Today }
             };
 
             this.InitializeComponent();
@@ -43,6 +43,8 @@ namespace QuickForCortana
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
+            //Storage storage = new Storage();
+            //await storage.deserializeJsonAsync(((MainViewModel)DataContext).Notes);
         }
     }
 
