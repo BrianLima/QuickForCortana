@@ -34,6 +34,7 @@
 						Width="50" Height="50" Background="Transparent"/>
                     <TextBlock Text="Help" FontSize="18" VerticalAlignment="Center" />
                 </StackPanel>
+<<<<<<< HEAD
 
             </StackPanel>
         </SplitView.Pane>
@@ -48,6 +49,29 @@
                 </ListBox.ItemTemplate>
             </ListBox>
         </StackPanel>
+=======
+            </StackPanel>
+        </SplitView.Pane>
+        <SplitView.Content>
+            <ListView ItemsSource="{Binding Path=Notes}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition/>
+                                <ColumnDefinition Width="376*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Margin="9,40,139,0" Text="{Binding Path=Date}" VerticalAlignment="Top" Grid.Column="1" Height="27" FontSize="14"/>
+                            <TextBlock Margin="9,3,10,0" TextWrapping="Wrap" Text="{Binding Path=Content}" VerticalAlignment="Top" Height="37" FontSize="28" Grid.Column="1"/>
+                            <Rectangle Grid.Column="1" Fill="{ThemeResource ComboBoxHeaderForegroundThemeBrush}" Height="2" Margin="4,0,0,3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="389" Stroke="{ThemeResource MediaTextThemeBrush}"/>
+                            <Button x:Name="button" FontFamily="Segoe MDL2 Assets" Content="&#xE104;" Grid.Column="1" HorizontalAlignment="Right" Margin="0,0,10,15" VerticalAlignment="Bottom" Width="36" Height="27"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </SplitView.Content>
+>>>>>>> origin/master
     </SplitView>
 
 </Page>
