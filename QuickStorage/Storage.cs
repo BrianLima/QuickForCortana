@@ -18,8 +18,9 @@ namespace QuickStorage
         /// Deserializes the application json storage
         /// </summary>
         /// <returns>A list of notes</returns>
-        public async Task<ObservableCollection<Note>> deserializeJsonAsync(ObservableCollection<Note> Notes)
+        public async Task<ObservableCollection<Note>> deserializeJsonAsync()
         {
+            ObservableCollection<Note> Notes;
             var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Note>));
 
             var myStream = await ApplicationData.Current.LocalFolder.OpenStreamForReadAsync(storage);
@@ -41,5 +42,6 @@ namespace QuickStorage
                 serializer.WriteObject(stream, Notes);
             }
         }
+
     }
 }

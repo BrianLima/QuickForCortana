@@ -29,24 +29,14 @@ namespace QuickForCortana
         {
             DataContext = new MainViewModel();
 
-            // adicionando alguns dados falsos para teste
-            ((MainViewModel)DataContext).Notes = new ObservableCollection<Note>
-            {
-                new Note { Content = "Nota 4", Date = DateTime.Today },
-                new Note { Content = "Nota 27", Date = DateTime.Today },
-                new Note { Content = "Nota 31", Date = DateTime.Today }
-            };
-
+            //Bind data
+            ((MainViewModel)DataContext).Notes = App.Notes;
             this.InitializeComponent();
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
-            //Storage storage = new Storage();
-            //await storage.deserializeJsonAsync(((MainViewModel)DataContext).Notes);
         }
     }
-
-
 }

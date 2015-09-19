@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QuickStorage;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -14,6 +15,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Collections.ObjectModel;
 
 namespace QuickForCortana
 {
@@ -22,6 +24,10 @@ namespace QuickForCortana
     /// </summary>
     sealed partial class App : Application
     {
+        public static ObservableCollection<Note> Notes;
+        Storage storage = new Storage();
+
+
         /// <summary>
         /// Initializes the singleton application object.  This is the first line of authored code
         /// executed, and as such is the logical equivalent of main() or WinMain().
@@ -42,6 +48,8 @@ namespace QuickForCortana
         /// <param name="e">Details about the launch request and process.</param>
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
+            //Load user notes
+            Notes = storage.deserializeJsonAsync().Result;
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -98,10 +106,11 @@ namespace QuickForCortana
         /// </summary>
         /// <param name="sender">The source of the suspend request.</param>
         /// <param name="e">Details about the suspend request.</param>
-        private void OnSuspending(object sender, SuspendingEventArgs e)
+        private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            //Store the user notes
+            await storage.writeJsonAsync(Notes);
             deferral.Complete();
         }
     }
