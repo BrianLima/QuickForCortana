@@ -7,7 +7,7 @@
   <CommandSet xml:lang="en-us" Name="Repeat">
     <CommandPrefix>Quick </CommandPrefix>
 
-    <Example>Quick Parked my car here</Example>
+    <Example>Quick Note Parked my car here</Example>
 
     <Command Name="ShowNotesCommand">
       <Example> Show my notes </Example>
@@ -15,13 +15,18 @@
       <Feedback> Noting this... </Feedback>
       <Navigate/>
     </Command>
-
-    <PhraseTopic Label="ShowNotes" Scenario="Natural Language">
+    
+    <Command Name="TakeNote">
+      <Example>Quick Note Parked my car here</Example>
+      <ListenFor>Note </ListenFor>
+      <VoiceCommandService Target="VoiceService" />
+    </Command>
+    
+      <PhraseTopic Label="ShowNotes" Scenario="Natural Language">
       <Subject>Show my notes</Subject>
       <Subject>What do i have noted</Subject>
       <Subject>What do you have noted</Subject>
     </PhraseTopic>
-
   </CommandSet>
 
 </VoiceCommands>
