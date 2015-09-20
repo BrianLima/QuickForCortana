@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Be sure to use the new v1.1 namespace to utilize the new PhraseTopic feature -->
+<VoiceCommands xmlns="http://schemas.microsoft.com/voicecommands/1.2">
+  <!-- The CommandSet Name is used to programmatically access the CommandSet -->
+
+  <CommandSet xml:lang="en-us" Name="Repeat">
+    <CommandPrefix>Quick </CommandPrefix>
+
+    <Example>Quick Parked my car here</Example>
+
+    <Command Name="ShowNotesCommand">
+      <Example> Show my notes </Example>
+      <ListenFor>[Cortana] {ShowNotes} </ListenFor>
+      <Feedback> Noting this... </Feedback>
+      <Navigate/>
+    </Command>
+
+    <PhraseTopic Label="ShowNotes" Scenario="Natural Language">
+      <Subject>Show my notes</Subject>
+      <Subject>What do i have noted</Subject>
+      <Subject>What do you have noted</Subject>
+    </PhraseTopic>
+
+  </CommandSet>
+
+</VoiceCommands>

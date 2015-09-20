@@ -16,6 +16,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
+using Windows.Media.SpeechRecognition;
 
 namespace QuickForCortana
 {
@@ -39,6 +40,22 @@ namespace QuickForCortana
                 Microsoft.ApplicationInsights.WindowsCollectors.Session);
             this.InitializeComponent();
             this.Suspending += OnSuspending;
+        }
+
+        protected override void OnActivated(IActivatedEventArgs e)
+        {
+            if (e.Kind == ActivationKind.VoiceCommand)
+            {
+                var commandArgs = e as VoiceCommandActivatedEventArgs;
+                SpeechRecognitionResult speechRecognitionResult = commandArgs.Result;
+                string voiceCommandName = speechRecognitionResult.RulePath[0];
+
+                switch (voiceCommandName)
+                {
+                    case "ShowNotesCommand":
+                        break;
+                }
+            }
         }
 
         /// <summary>
