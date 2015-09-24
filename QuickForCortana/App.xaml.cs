@@ -66,7 +66,15 @@ namespace QuickForCortana
         protected override void OnLaunched(LaunchActivatedEventArgs e)
         {
             //Load user notes
-            Notes = storage.deserializeJsonAsync().Result;
+            try
+            {
+                Notes = storage.deserializeJsonAsync().Result;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
 
 #if DEBUG
             if (System.Diagnostics.Debugger.IsAttached)
@@ -126,8 +134,13 @@ namespace QuickForCortana
         private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //Store the user notes
-            await storage.writeJsonAsync(Notes);
+            
+            //Store user notes
+            if (Notes != null)
+            {
+                await storage.writeJsonAsync(Notes);
+            }
+
             deferral.Complete();
         }
     }

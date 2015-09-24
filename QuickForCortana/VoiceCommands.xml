@@ -19,7 +19,7 @@
     <Command Name="TakeNote">
       <Example>Quick Note Parked my car here</Example>
       <ListenFor>Note </ListenFor>
-      <VoiceCommandService Target="VoiceService" />
+      <VoiceCommandService Target="VoiceService"/>
     </Command>
     
       <PhraseTopic Label="ShowNotes" Scenario="Natural Language">

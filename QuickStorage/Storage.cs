@@ -48,12 +48,14 @@ namespace QuickStorage
         /// <param name="notes"></param>
         public async Task writeJsonAsync(ObservableCollection<Note> Notes)
         {
+            if (Notes == null)
+                return;
+
             var serializer = new DataContractJsonSerializer(typeof(List<Note>));
             using (var stream = await ApplicationData.Current.LocalFolder.OpenStreamForWriteAsync(storage, CreationCollisionOption.ReplaceExisting))
             {
                 serializer.WriteObject(stream, Notes);
             }
         }
-
     }
 }
