@@ -134,12 +134,9 @@ namespace QuickForCortana
         private async void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            
+
             //Store user notes
-            if (Notes != null)
-            {
-                await storage.writeJsonAsync(Notes);
-            }
+            await storage.writeJsonAsync(Notes);
 
             deferral.Complete();
         }
