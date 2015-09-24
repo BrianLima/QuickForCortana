@@ -39,7 +39,7 @@ namespace QuickForCortana
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
-            InstallVCD();
+            //InstallVCD();
         }
 
         private async void InstallVCD()

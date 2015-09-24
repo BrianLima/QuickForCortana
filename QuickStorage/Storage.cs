@@ -20,6 +20,18 @@ namespace QuickStorage
         /// <returns>A list of notes</returns>
         public async Task<ObservableCollection<Note>> deserializeJsonAsync()
         {
+            if (!File.Exists(ApplicationData.Current.LocalFolder.Path + @"\" + storage))
+            {
+                ObservableCollection<Note> SampleNotes = new ObservableCollection<Note>()
+                {
+                    new Note { Content = "Parked my car at sesame street", Date = DateTime.Now },
+                    new Note { Content = "I have to buy milk next", Date = DateTime.Now },
+                    new Note { Content = "Remind my friends to download this app", Date = DateTime.Now }
+                };
+
+                await writeJsonAsync(SampleNotes);
+            }
+
             ObservableCollection<Note> Notes;
             var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Note>));
 
