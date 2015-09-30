@@ -7,7 +7,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="100"
-    d:DesignWidth="400">
+    d:DesignWidth="400" RightTapped="UserControl_RightTapped">
 
     <Grid x:Name="LayoutRoot" Background="Transparent" Margin="0,0,-5,0">
         <Grid.ColumnDefinitions>
@@ -17,6 +17,6 @@
         </Grid.ColumnDefinitions>
         <TextBlock Margin="9,40,139,0" Text="{Binding Path=Date}" VerticalAlignment="Top" Grid.Column="1" Height="27" FontSize="14"/>
         <TextBlock Margin="0,3,10,0" TextWrapping="Wrap" Text="{Binding Path=Content}" VerticalAlignment="Top" Height="37" FontSize="28" Grid.Column="1"/>
-        <Rectangle Grid.Column="1" Fill="{ThemeResource ComboBoxHeaderForegroundThemeBrush}" Height="2" Margin="4,0,0,3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="389" Stroke="{ThemeResource MediaTextThemeBrush}"/>
+        <Rectangle Grid.Column="1" Fill="{ThemeResource ToggleButtonCheckedPointerOverBackgroundThemeBrush}" Height="2" Margin="4,0,0,3" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="389" Stroke="{ThemeResource MediaTextThemeBrush}"/>
     </Grid>
 </UserControl>

@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -27,6 +28,25 @@ namespace QuickForCortana.Models
         private void button_Click(object sender, RoutedEventArgs e)
         {
             //ToDo: This.Note.Edit
+        }
+
+        private async void UserControl_RightTapped(object sender, RightTappedRoutedEventArgs e)
+        {
+            var menu = new PopupMenu();
+            menu.Commands.Add(new UICommand("Edit"));
+
+            var chosenCommand = await menu.ShowForSelectionAsync(GetElementRect((FrameworkElement)sender));
+            if (chosenCommand.Label == "Edit")
+            {
+                //TODO: Navigate to note detail page and edit it
+            }
+        }
+
+        public static Rect GetElementRect(FrameworkElement element)
+        {
+            GeneralTransform buttonTransform = element.TransformToVisual(null);
+            Point point = buttonTransform.TransformPoint(new Point());
+            return new Rect(point, new Size(element.ActualWidth, element.ActualHeight));
         }
     }
 }
