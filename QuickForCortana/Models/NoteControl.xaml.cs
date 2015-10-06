@@ -32,14 +32,7 @@ namespace QuickForCortana.Models
 
         private async void UserControl_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            var menu = new PopupMenu();
-            menu.Commands.Add(new UICommand("Edit"));
 
-            var chosenCommand = await menu.ShowForSelectionAsync(GetElementRect((FrameworkElement)sender));
-            if (chosenCommand.Label == "Edit")
-            {
-                //TODO: Navigate to note detail page and edit it
-            }
         }
 
         public static Rect GetElementRect(FrameworkElement element)
