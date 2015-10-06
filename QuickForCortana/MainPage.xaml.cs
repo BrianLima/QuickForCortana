@@ -41,7 +41,6 @@ namespace QuickForCortana
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
         {
             MySplitView.IsPaneOpen = !MySplitView.IsPaneOpen;
-            //InstallVCD();
         }
 
         private async void InstallVCD()
@@ -63,24 +62,18 @@ namespace QuickForCortana
 
         }
 
-        private void ListViewNotes_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            this.Frame.Navigate(
-                typeof(NoteDetailPage),
-                e.ClickedItem,
-                new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
-        }
-
         private async void ListViewNotes_RightTapped(object sender, RightTappedRoutedEventArgs e)
         {
-            var x = ((NoteControl)sender);
             var menu = new PopupMenu();
             menu.Commands.Add(new UICommand("Edit"));
 
             var chosenCommand = await menu.ShowForSelectionAsync(GetElementRect((FrameworkElement)sender));
             if (chosenCommand.Label == "Edit")
             {
-                
+                 this.Frame.Navigate(
+                 typeof(NoteDetailPage),
+                 this,
+                 new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
             }
         }
 

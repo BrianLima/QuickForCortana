@@ -106,6 +106,9 @@
     <Compile Include="Models\NoteControl.xaml.cs">
       <DependentUpon>NoteControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NoteDetailPage.xaml.cs">
+      <DependentUpon>NoteDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
