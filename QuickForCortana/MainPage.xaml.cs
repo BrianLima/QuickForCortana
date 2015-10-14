@@ -72,7 +72,7 @@ namespace QuickForCortana
             {
                  this.Frame.Navigate(
                  typeof(NoteDetailPage),
-                 this,
+                 sender,
                  new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
             }
         }
