@@ -9,7 +9,7 @@ namespace QuickForCortana
     {
         public NoteDetailPage()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
