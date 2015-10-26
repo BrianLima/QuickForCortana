@@ -17,6 +17,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
 using Windows.Media.SpeechRecognition;
+using Windows.UI.Core;
 
 namespace QuickForCortana
 {
@@ -110,8 +111,28 @@ namespace QuickForCortana
                 // parameter
                 rootFrame.Navigate(typeof(MainPage), e.Arguments);
             }
+
+            // Register a global back event handler. This can be registered on a per-page-bases if you only have a subset of your pages
+            // that needs to handle back or if you want to do page-specific logic before deciding to navigate back on those pages.
+            SystemNavigationManager.GetForCurrentView().BackRequested += App_BackRequested;
+
+
             // Ensure the current window is active
             Window.Current.Activate();
+        }
+
+        private void App_BackRequested(object sender, BackRequestedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+            if (rootFrame == null)
+                return;
+
+            // If we can go back and the event has not already been handled, do so.
+            if (rootFrame.CanGoBack && e.Handled == false)
+            {
+                e.Handled = true;
+                rootFrame.GoBack();
+            }
         }
 
         /// <summary>

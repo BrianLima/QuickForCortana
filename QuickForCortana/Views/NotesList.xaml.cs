@@ -11,6 +11,7 @@ using Windows.ApplicationModel;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.Storage;
+using Windows.UI.Core;
 using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -35,7 +36,27 @@ namespace QuickForCortana
 
             //Bind data
             ((MainViewModel)DataContext).Notes = App.Notes;
+
             this.InitializeComponent();
+
+            this.NavigationCacheMode = NavigationCacheMode.Required;
+        }
+
+        protected override void OnNavigatedTo(NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame.CanGoBack)
+            {
+                // If we have pages in our in-app backstack and have opted in to showing back, do so
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Visible;
+            }
+            else
+            {
+                // Remove the UI from the title bar if there are no pages in our in-app back stack
+                SystemNavigationManager.GetForCurrentView().AppViewBackButtonVisibility = AppViewBackButtonVisibility.Collapsed;
+            }
         }
 
         private void HamburgerButton_Click(object sender, RoutedEventArgs e)
@@ -70,10 +91,10 @@ namespace QuickForCortana
             var chosenCommand = await menu.ShowForSelectionAsync(GetElementRect((FrameworkElement)sender));
             if (chosenCommand.Label == "Edit")
             {
-                 this.Frame.Navigate(
-                 typeof(NoteDetailPage),
-                 sender,
-                 new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
+                this.Frame.Navigate(
+                typeof(NoteDetailPage),
+                sender,
+                new Windows.UI.Xaml.Media.Animation.DrillInNavigationTransitionInfo());
             }
         }
 
