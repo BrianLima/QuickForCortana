@@ -1,4 +1,5 @@
 ﻿using QuickForCortana.Models;
+using QuickStorage;
 using Windows.UI.Core;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
@@ -8,6 +9,7 @@ namespace QuickForCortana
 {
     public sealed partial class NoteDetailPage : Page
     {
+        Note note;
         public NoteDetailPage()
         {
             InitializeComponent();
@@ -15,7 +17,7 @@ namespace QuickForCortana
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            var note = ((NoteControl)e.Parameter).DataContext;
+            note = (Note)((NoteControl)e.Parameter).DataContext;
 
             base.OnNavigatedTo(e);
 
@@ -35,14 +37,20 @@ namespace QuickForCortana
             }
         }
 
-        private void buttonSave_Click(object sender, RoutedEventArgs e)
+        private void ButtonSave_Click(object sender, RoutedEventArgs e)
         {
+
             //TODO:Save Note
         }
 
-        private void buttonCancel_Click(object sender, RoutedEventArgs e)
+        private void ButtonCancel_Click(object sender, RoutedEventArgs e)
         {
-            //TODO:Cancel and navigate to previous page
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame.CanGoBack)
+            {
+                rootFrame.GoBack();
+            }
         }
     }
 }
